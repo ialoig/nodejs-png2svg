@@ -1,0 +1,87 @@
+.App {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.svg {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.svg-container {
+	width: 400px;
+    height: 400px;
+}
+
+.svg-shapes {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+}
+
+.svg-pixels {    
+	display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+	padding: 20px;
+}
+
+.title {
+  font-size: 36px;
+  text-align: center;
+  font-weight: 500;
+}
+
+
+.gradient-text {
+	background: -webkit-linear-gradient(left, #60c657 30%, #35aee2 60%);
+	background-clip: text;
+	animation: gradient-animation 4s ease infinite;
+	background-size: 200% 200%;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+
+/* KeyFrames */
+@-webkit-keyframes gradient-animation {
+	0% {
+	background-position: 0% 50%;
+	}
+	50% {
+	background-position: 100% 50%;
+	}
+	100% {
+	background-position: 0% 50%;
+	}
+}
+@-moz-keyframes gradient-animation {
+	0% {
+	background-position: 0% 50%;
+	}
+	50% {
+	background-position: 100% 50%;
+	}
+	100% {
+	background-position: 0% 50%;
+	}
+}
+@keyframes gradient-animation {
+	0% {
+	background-position: 0% 50%;
+	}
+	50% {
+	background-position: 100% 50%;
+	}
+	100% {
+	background-position: 0% 50%;
+	}
+}
