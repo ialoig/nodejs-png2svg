@@ -1,9 +1,8 @@
 const chalk = require("chalk")
-const { readPNG, writeJSONFile } = require("./file")
 
-const encode = (png) => {
-	console.log(chalk.white("\nSTART encoding file ..."))
-	const { width, height, data } = png
+const encode = (imageData) => {
+	const { name, width, height, data } = imageData
+	console.log(chalk.white("\nSTART encoding file: "), chalk.blue(name))
 	let rleEncodedRows = []
 	for (let y = 0; y < height; y++) {
 		let count = 0
@@ -35,9 +34,8 @@ const encode = (png) => {
 			}
 		}
 	}
-	console.log(chalk.green("File is encoded! size: "), chalk.blue(rleEncodedRows.length))
-	console.log(chalk.grey(rleEncodedRows))
-	return rleEncodedRows
+	console.log(chalk.white("File is encoded! size: "), chalk.blue(rleEncodedRows.length))
+	imageData.rle = rleEncodedRows
 }
 
 

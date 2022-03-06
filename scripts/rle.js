@@ -1,14 +1,16 @@
 const { encode } = require("./encoder")
-const { readPNG, writeJSONFile } = require("./file")
+const { readPNGs, writeJSONFile } = require("./file")
 
 
 const main = async () => {
 	// read and extract png information
-	const png = readPNG()
+	const images = readPNGs()
 
-	// start RLE encoding
-	const rleRows = encode(png)
-	writeJSONFile(rleRows, "rle")
+	for (const image of images) {
+		// start RLE encoding
+		encode(image)
+		writeJSONFile(image.rle, image.name + "-rle")
+	}
 }
 
 

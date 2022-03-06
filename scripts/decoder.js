@@ -7,15 +7,15 @@ const decode = (rleRows) => {
 	const svgOpen = '<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">\n'
 	const svgClose = "</svg>"
     
-	let rects = ""
+	let rects = []
 	for (let row = 0; row < rleRows.length; row++) {
 		const rleRow = rleRows[row] // like : #ffffff32#0000004#ffffff28
 
 		const rectsPerRow = generateRects(row, rleRow)
-		rects =  rects.concat(rectsPerRow)
+		rects.push(rectsPerRow)
 	}
 
-	const svg = svgOpen + rects + svgClose
+	const svg = svgOpen + rects.join("") + svgClose
 	return svg
 }
 
@@ -31,7 +31,7 @@ const generateRects = (row, rlerow) => {
 		return
 
 	let xWidth = 0 // variable to save x axis values; should be incremented by width
-	let rects = "" // store all the generated rects
+	let rects = [] // store all the generated rects
 
 	const regHex = /([a-f\d]{6})/
 	for (let i=0; i<rlePixel.length; i++) {
@@ -50,7 +50,7 @@ const generateRects = (row, rlerow) => {
 			}
 
 			const rect = getSVGRect(info)
-			rects = rects.concat(rect)
+			rects.push(rect)
 
 			xWidth += width // update x axis value
 		}

@@ -20,7 +20,7 @@ Here **high-level** steps:
 `Run-length encoding (RLE)` is a form of lossless data compression in which runs of data (sequences in which the same data value occurs in many consecutive data elements) are stored as a single data value and count, rather than as the original run.
 
 <p align="center">
-  <img src="./src//data/rle.png">
+  <img src="./src/data/rle.png">
 </p>
 
 ## 🔗 Useful links
@@ -30,19 +30,21 @@ Here **high-level** steps:
 - [create bitmap using js](https://rephrase.net/box/bitmap/)
 - [colors-converter](https://github.com/catamphetamine/color-space/blob/b940ca709c99048ee9ff3a91b7b66fdb78db72a8/source/index.js)
 
-> This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## 🚀 Getting Started
 
 Here the list of available scripts:
 
 ### export png to svg
 
+Looks for png files into the folder */src/data/images* and exports them in svg format under */src/data/export*
+
 ```shell
  npm run export
 ```
 
 ### encode a png file using RLE
+
+Looks for png files into the folder */src/data/images* and exports the rle encoding under */src/data/encode*
 
 ```shell
  npm run encode
