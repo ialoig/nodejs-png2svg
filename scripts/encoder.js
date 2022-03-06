@@ -1,23 +1,8 @@
-const fs = require("fs")
-const PNG = require("pngjs").PNG
+const chalk = require("chalk")
+const { readPNG, writeJSONFile } = require("./file")
 
-
-async function main () {
-	const pngFile = __dirname + "/../src/data/pixel-player.png"
-	console.log("PNG file is : ", pngFile)
-
-	const buffer = fs.readFileSync(pngFile)
-	const png = PNG.sync.read(buffer)
-	// writePngData(png.data)
-
-	const rleRows = rle(png)
-	console.log("rleRows: ", rleRows)
-	writeRLEData(rleRows)
-	
-}
-
-
-const rle = (png) => {
+const encode = (png) => {
+	console.log(chalk.white("\nSTART encoding file ..."))
 	const { width, height, data } = png
 	let rleEncodedRows = []
 	for (let y = 0; y < height; y++) {
@@ -31,7 +16,6 @@ const rle = (png) => {
 			const g = data[idx + 1]
 			const b = data[idx + 2]
 			const hex = rgbToHex([r, g, b])
-			console.log("idx:", idx, "hex:", hex)
 
 			if (x === 0) {
 				prevHex = hex
@@ -40,27 +24,22 @@ const rle = (png) => {
 			if (prevHex === hex) {
 				count += 1 // increment number of pixel
 			} else {
-				const row = "$" + prevHex + count // define the previous rle string value 
+				const row = prevHex + count // define the previous rle string value 
 				rleEncodedRows[y] = rleEncodedRows[y] === undefined ? row : rleEncodedRows[y] + row // save the previous rle value into array of rows
-				console.log("RLE:", row)
 				prevHex = hex // update previous hexadecimal with actual
 				count = 1 // reset counter
 			}
 			if (x === width - 1) {
-				const row = "$" + hex + count // define the rle string value
+				const row = hex + count // define the rle string value
 				rleEncodedRows[y] = rleEncodedRows[y] === undefined ? row : rleEncodedRows[y] + row // insert the row into array of rows
-				console.log("RLE:", row)
 			}
 		}
 	}
+	console.log(chalk.green("File is encoded! size: "), chalk.blue(rleEncodedRows.length))
+	console.log(chalk.grey(rleEncodedRows))
 	return rleEncodedRows
 }
 
-
-
-const writeRLEData = (rle) => {
-	fs.writeFileSync(__dirname + "/../src/data/swtData_rle.json", rle.join(""))
-}
 
 /**
  * Converts RGB color to hex.
@@ -79,7 +58,6 @@ function rgbComponentToHex(component) {
 
 
 
-main().catch((error) => {
-	console.error(error)
-	process.exitCode = 1
-})
+module.exports = {
+	encode
+}

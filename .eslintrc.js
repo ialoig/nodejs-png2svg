@@ -33,7 +33,8 @@ module.exports = {
 		],
 		quotes: [
 			"warn",
-			"double"
+			"double",
+			{ "avoidEscape": true }
 		],
 		semi: [
 			"error",

@@ -2,7 +2,18 @@
 
 ## Generate SVG from PNG
 
-Starting reading a `png` file, script compress image using `RLE` (run-length encoding) and then recreate image in a `svg` format.
+Starting reading a `PNG` file, script compress the image using `RLE` (run-length encoding) and then convert it in  `SVG` format.
+
+Here **high-level** steps:
+
+1. Read a png image trough `pngjs` library
+2. Encode png data using run-length encoding in the format 'hexColor' + 'width' (ex. #ffffff32) where:
+
+- **hexColor** (#ffffff): is the color of the pixels
+
+- **width** (32): is the number of pixels in a row
+
+3. Decode RLE information and convert them in svg rects of `width=witdh` and `height=1`
 
 ## RLE encoding
 
@@ -15,13 +26,24 @@ Starting reading a `png` file, script compress image using `RLE` (run-length enc
 ## 🔗 Useful links
 
 - [Run-length encoding](https://en.wikipedia.org/wiki/Run-length_encoding)
+- [bitmap-js](https://github.com/ericandrewlewis/bitmap-js)
+- [create bitmap using js](https://rephrase.net/box/bitmap/)
+- [colors-converter](https://github.com/catamphetamine/color-space/blob/b940ca709c99048ee9ff3a91b7b66fdb78db72a8/source/index.js)
 
 > This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## 🚀 Getting Started
 
-Run the command
+Here the list of available scripts:
+
+### export png to svg
 
 ```shell
- npm start
+ npm run export
+```
+
+### encode a png file using RLE
+
+```shell
+ npm run encode
 ```
