@@ -33,11 +33,11 @@ const generateRects = (row, rlerow) => {
 	let xWidth = 0 // variable to save x axis values; should be incremented by width
 	let rects = [] // store all the generated rects
 
-	const regHex = /([a-f\d]{6})/
+	const regHex = /([a-x\d]{6})/
 	for (let i=0; i<rlePixel.length; i++) {
 
-		const pixel = rlePixel[i] // #ffffff64
-		const pixelinfo = pixel.split(regHex)
+		const pixel = rlePixel[i] // ffffff64
+		const pixelinfo = pixel?.split(regHex)
 		if (pixelinfo.length === 3) {
             
 			const fill = pixelinfo[1]
@@ -60,12 +60,14 @@ const generateRects = (row, rlerow) => {
 
 
 const getSVGRect = (info) => {
+	// convert transparency tag into the correct svg value
+	const fill = info.fill === "xxxxxx" ? "none" : "#" + info.fill
 	const rect = 
         '<rect x="' + info.x + 
         '" y="' + info.y + 
         '" width="' + info.width + 
         '" height="1" shape-rendering="crispEdges"' + 
-        ' fill="#' + info.fill + '"/>' + "\n"
+        ' fill="' + fill + '"/>' + "\n"
 	return rect
 
 }

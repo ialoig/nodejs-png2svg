@@ -14,9 +14,11 @@ const encode = (imageData) => {
 			const r = data[idx]
 			const g = data[idx + 1]
 			const b = data[idx + 2]
-			const hex = rgbToHex([r, g, b])
+			const a = data[idx + 3]
 
-			if (x === 0) {
+			const hex = rgbToHex([r, g, b, a])
+
+			if (prevHex === undefined ) {
 				prevHex = hex
 			}
 
@@ -45,7 +47,10 @@ const encode = (imageData) => {
  * @param  {string} hex
  * @return {number[]} [rgb]
  */
-function rgbToHex([r, g, b]) {
+function rgbToHex([r, g, b, a]) {
+	if (a === 0) {
+		return "#xxxxxx"
+	}
 	return "#" + rgbComponentToHex(r) + rgbComponentToHex(g) + rgbComponentToHex(b)
 }
 
