@@ -9,7 +9,7 @@ const decode = (rleRows) => {
     
 	let rects = []
 	for (let row = 0; row < rleRows.length; row++) {
-		const rleRow = rleRows[row] // like : #ffffff32#0000004#ffffff28
+		const rleRow = rleRows[row] // ex : #ffffff32#0000004#ffffff28
 
 		const rectsPerRow = generateRects(row, rleRow)
 		rects.push(rectsPerRow)
@@ -25,7 +25,7 @@ const generateRects = (row, rlerow) => {
 		return
 
 	// split RLE row for the special char
-	const rlePixel = rlerow.split("#") // [ '', 'ffffff32', '0000004', 'ffffff28' ]
+	const rlePixel = rlerow.split("#") // ex: [ '', 'ffffff32', '0000004', 'ffffff28' ]
 
 	if (rlePixel.length === 0)
 		return
@@ -36,7 +36,7 @@ const generateRects = (row, rlerow) => {
 	const regHex = /([a-x\d]{6})/
 	for (let i=0; i<rlePixel.length; i++) {
 
-		const pixel = rlePixel[i] // ffffff64
+		const pixel = rlePixel[i] // ex: ffffff64
 		const pixelinfo = pixel?.split(regHex)
 		if (pixelinfo.length === 3) {
             

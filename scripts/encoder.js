@@ -1,7 +1,7 @@
 const chalk = require("chalk")
 
-const encode = (imageData) => {
-	const { name, width, height, data } = imageData
+const encode = (image) => {
+	const { name, category, width, height, data } = image
 	console.log(chalk.white("\nSTART encoding file: "), chalk.blue(name))
 	let rleEncodedRows = []
 	for (let y = 0; y < height; y++) {
@@ -37,7 +37,16 @@ const encode = (imageData) => {
 		}
 	}
 	console.log(chalk.white("File is encoded! size: "), chalk.blue(rleEncodedRows.length))
-	imageData.rle = rleEncodedRows
+
+	// return an image data with the run-length encoding
+	const imageData = {
+		name: name,
+		category: category,
+		width: width,
+		height: height,
+		rle: rleEncodedRows
+	}
+	return imageData
 }
 
 
@@ -48,6 +57,7 @@ const encode = (imageData) => {
  * @return {number[]} [rgb]
  */
 function rgbToHex([r, g, b, a]) {
+	// color is transparent; return a fake value
 	if (a === 0) {
 		return "#xxxxxx"
 	}

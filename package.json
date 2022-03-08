@@ -25,7 +25,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "encode": "node scripts/rle.js",
-    "export": "node scripts/export.js"
+    "export": "node scripts/export.js",
+    "compose": "node scripts/compose.js"
   },
   "eslintConfig": {
     "extends": [
