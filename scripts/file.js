@@ -29,7 +29,7 @@ const readPNGs = () => {
 			height: png.height,
 			data: png.data
 		}
-
+		
 		console.log(
 			"PNG information: \n " +
 				"size: %s x %s,\n " + 

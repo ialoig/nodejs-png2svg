@@ -6,14 +6,14 @@ Starting reading a `PNG` file, script compress the image using `RLE` (run-length
 
 Here **high-level** steps:
 
-1. Read a png image trough `pngjs` library
-2. Encode png data using run-length encoding in the format 'hexColor' + 'width' (ex. #ffffff32) where:
+1. 🖼 Read a png image trough `pngjs` library
+2. 📥 Encode png data using run-length encoding in the format 'hexColor' + 'width' (ex. #ffffff32) where:
 
 - **hexColor** (#ffffff): is the color of the pixels
 
 - **width** (32): is the number of pixels in a row
 
-3. Decode RLE information and convert them in svg rects of `width=witdh` and `height=1`
+3. 📤 Decode RLE information and convert them in svg rects of `width=witdh` and `height=1`
 
 ## RLE encoding
 

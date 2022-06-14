@@ -6,6 +6,7 @@ const encode = (image) => {
 	console.log(chalk.white("\nSTART encoding file: "), chalk.blue(name))
 	let rleEncodedRows = []
 	for (let y = 0; y < height; y++) {
+		let xRLE = []
 		let count = 0
 		let prevHex
 		for (let x = 0; x < width; x++) {
@@ -26,14 +27,20 @@ const encode = (image) => {
 			if (prevHex === hex) {
 				count += 1 // increment number of pixel
 			} else {
-				const row = prevHex + count // define the previous rle string value 
-				rleEncodedRows[y] = rleEncodedRows[y] === undefined ? row : rleEncodedRows[y] + row // save the previous rle value into array of rows
+				// const row = prevHex + count // define the previous rle string value 
+				// rleEncodedRows[y] = rleEncodedRows[y] === undefined ? row : rleEncodedRows[y] + row // save the previous rle value into array of rows
+				xRLE.push(prevHex)
+				xRLE.push(count)
+				rleEncodedRows[y] = xRLE
 				prevHex = hex // update previous hexadecimal with actual
 				count = 1 // reset counter
 			}
 			if (x === width - 1) {
-				const row = hex + count // define the rle string value
-				rleEncodedRows[y] = rleEncodedRows[y] === undefined ? row : rleEncodedRows[y] + row // insert the row into array of rows
+				// const row = hex + count // define the rle string value
+				// rleEncodedRows[y] = rleEncodedRows[y] === undefined ? row : rleEncodedRows[y] + row // insert the row into array of rows
+				xRLE.push(hex)
+				xRLE.push(count)
+				rleEncodedRows[y] = xRLE
 			}
 		}
 	}
