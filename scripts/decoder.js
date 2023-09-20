@@ -9,7 +9,14 @@ const decode = (rleRows) => {
     
 	let rects = []
 	for (let row = 0; row < rleRows.length; row++) {
-		const rleRow = rleRows[row] // ex : #ffffff32#0000004#ffffff28
+		const rleRowArray = rleRows[row] // ex : #ffffff32#0000004#ffffff28
+		var rleRow = ""
+
+		if (rleRowArray instanceof Array) {
+			for (var x = 0; x < rleRowArray.length; x++) {
+				rleRow += rleRowArray[x]
+			}
+		}
 
 		const rectsPerRow = generateRects(row, rleRow)
 		rects.push(rectsPerRow)

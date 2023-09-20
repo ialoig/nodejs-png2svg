@@ -9,9 +9,9 @@ Here **high-level** steps:
 1. 🖼 Read a png image trough `pngjs` library
 2. 📥 Encode png data using run-length encoding in the format 'hexColor' + 'width' (ex. #ffffff32) where:
 
-- **hexColor** (#ffffff): is the color of the pixels
+- **hexColor** (#ffffff): hexadecimal pixel color
 
-- **width** (32): is the number of pixels in a row
+- **width** (32): number of pixels in a row
 
 3. 📤 Decode RLE information and convert them in svg rects of `width=witdh` and `height=1`
 
